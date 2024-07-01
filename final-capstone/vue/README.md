@@ -13,9 +13,6 @@ npm install
 Next you'll need to open the `.env` file that's located in the root of the project. You can store the environment variables that you want to use throughout your application in this file. When you open it, it'll look like this:
 
 ```
-# Java
-VUE_APP_REMOTE_API=http://localhost:8080
-
 # .NET
 VUE_APP_REMOTE_API=https://localhost:44358
 ```
@@ -39,7 +36,7 @@ router.beforeEach((to, from, next) => {
   // Determine if the route requires Authentication
   const requiresAuth = to.matched.some(x => x.meta.requiresAuth);
 
-  // If it does and they are not logged in, send the user to "/login"
+  // If it does require authentication and they are not logged in, send the user to "/login"
   if (requiresAuth && store.state.token === '') {
     next("/login");
   } else {
