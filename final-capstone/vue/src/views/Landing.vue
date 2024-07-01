@@ -2,7 +2,7 @@
   <v-container fluid>
     <div class="main-container">
       <v-card class="container mx-auto mt-5">
-        <h1>Fitness Elevator</h1>
+        <h1>Random Workout Generator</h1>
         <div class="flex-container">
           <v-card-text>
             <p>

@@ -36,11 +36,11 @@
           v-model="user.password"
           :rules="passwordRules"
           :counter="50"
-          :type="show ? 'text' : 'password'"
+          :type="showPassword ? 'text' : 'password'"
           label="Password"
           required
-          :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
-          @click:append="show = !show"
+          :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+          @click:append="showPassword = !showPassword"
         ></v-text-field>
         <v-divider />
         <v-card-actions>
@@ -75,7 +75,7 @@ export default {
       ],
       passwordRules: [() => true], // TODO Eventually use regex to validate password strength
       // https://stackoverflow.com/questions/5142103/regex-to-validate-password-strength
-      show: false,
+      showPassword: false,
     };
   },
   methods: {

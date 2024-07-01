@@ -13,9 +13,6 @@ npm install
 Next you'll need to open the `.env` file that's located in the root of the project. You can store the environment variables that you want to use throughout your application in this file. When you open it, it'll look like this:
 
 ```
-# Java
-VUE_APP_REMOTE_API=http://localhost:8080
-
 # .NET
 VUE_APP_REMOTE_API=https://localhost:44358
 ```
@@ -39,7 +36,7 @@ router.beforeEach((to, from, next) => {
   // Determine if the route requires Authentication
   const requiresAuth = to.matched.some(x => x.meta.requiresAuth);
 
-  // If it does and they are not logged in, send the user to "/login"
+  // If it does require authentication and they are not logged in, send the user to "/login"
   if (requiresAuth && store.state.token === '') {
     next("/login");
   } else {
@@ -226,22 +223,23 @@ mutations: {
 
 When you reach the `/register` route, you'll see a bare registration page. Like the login page, this is intentional. You'll need to style this page to fit within your application.
 
-When you fill in a username, password, confirm the password role, and click the "Create Account" button, the method `register()` is called. This calls the `register()` method in `/src/services/AuthService.js`. This passes  your user details to your back-end application's REST API to create a new user:
+When you fill in a username, password, confirm the password role, and click the "Create Account" button, the method `register()` is called. This calls the `register()` method in `/src/services/AuthService.js`. This passes your user details to your back-end application's REST API to create a new user:
 
 ```js
 methods: {
-register() {
-  // ...
-  authService
-    .register(this.user)
-    .then(response => {
-      if (response.status == 201) {
-        this.$router.push({
-          path: "/login",
-          query: { registration: "success" }
-        });
-      }
-    })
-  // ...
+  register() {
+    // ...
+    authService
+      .register(this.user)
+      .then(response => {
+        if (response.status == 201) {
+          this.$router.push({
+            path: "/login",
+            query: { registration: "success" }
+          });
+        }
+      })
+    // ...
+  }
 }
 ```
